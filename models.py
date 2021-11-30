@@ -7,24 +7,22 @@ DATABASE = SqliteDatabase('neon-pyramid.sqlite')
 
 # models 
 # ===================================================
-
 class User(UserMixin, Model):
     username = CharField(unique = True)
     email = CharField(unique = True)
     phone_num = CharField(unique = True)
     address = CharField(unique = True)
     password = CharField(unique = True)
-    # paymentInfo = {
-    #     ccNum = CharField(unique = True)
-    #     ccExp = DateTimeField([formats='%Y-%m-%d'])
-    #     ccSecCode = CharField()
-    # }
+    paymentInfo = {
+        "ccNum": CharField(unique = True),
+        "ccExp": DateTimeField(),
+        "ccSecCode": CharField()
+    }
 
     class Meta:
         database = DATABASE
 
 # ===================================================
-
 class Order(Model):
     created_at = DateTimeField(default = datetime.datetime.now)
     total = FloatField()
@@ -47,7 +45,9 @@ class Dish(Model):
         database = DATABASE
 
 # ===================================================
+# ===================================================
 
+# initialize
 def initialize():
     DATABASE.connect()
     DATABASE.create_tables([User, Order, Dish], safe = True)
