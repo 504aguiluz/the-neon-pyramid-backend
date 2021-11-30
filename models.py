@@ -13,10 +13,10 @@ class User(UserMixin, Model):
     phone_num = CharField(unique = True)
     address = CharField(unique = True)
     password = CharField(unique = True)
-    paymentInfo = {
-        "ccNum": CharField(unique = True),
-        "ccExp": DateTimeField(),
-        "ccSecCode": CharField()
+    payment_info = {
+        "cc_num": CharField(unique = True),
+        "cc_exp": CharField(),
+        "cc_sec_code": CharField()
     }
 
     class Meta:

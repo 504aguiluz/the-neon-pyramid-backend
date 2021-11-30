@@ -44,7 +44,8 @@ def register():
             email = payload['email'],
             phone_num = payload['phone_num'],
             address = payload['address'],
-            password = pw_hash
+            password = pw_hash,
+            payment_info = payload['payment_info']
         )
 
         login_user(created_user)
@@ -70,7 +71,7 @@ def login():
     try:
         user = models.User.get(models.User.email == payload['email'])
         user_dict = model_to_dict(user)
-        password_is_good = check_password_hash(user_dict['password'], payload['passowrd'])
+        password_is_good = check_password_hash(user_dict['password'], payload['password'])
 
         if(password_is_good):
             login_user(user)
