@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 # LoginManager config
 app.secret_key = os.environ.get("FLASK_APP_SECRET")
-print(os.environ.get("FLASK_APP_SECRET"))
+# print(os.environ.get("FLASK_APP_SECRET"))
 login_manager = LoginManager()
 login_manager.init_app(app)
 

@@ -28,7 +28,7 @@ class User(UserMixin, Model):
 class Order(Model):
     created_at = DateTimeField(default = datetime.datetime.now)
     total = FloatField()
-    user = ForeignKeyField(User, backref='orders')
+    customer = ForeignKeyField(User, backref='orders')
     
     class Meta:
         database = DATABASE
