@@ -39,12 +39,10 @@ def create_dishes():
     payload = request.get_json()
     print(type(payload), 'payload')
     dish = models.Dish.create(**payload)
-    # checking object
-    print(dish.__dict__)
-    # checking methods
-    print(dir(dish))
     # viewing model as dict
+    print('============= created this dish:')
     print(model_to_dict(dish), 'model to dict')
+    print('================================')
     dish_dict = model_to_dict(dish)
 
     return jsonify(
@@ -56,7 +54,7 @@ def create_dishes():
     )
 
 # show dish -> /api/v1/dishes/<dish_id> =============================================
-dishes.route('/<id>', methods=['GET'])
+@dishes.route('/<id>', methods=['GET'])
 def get_one_dish(id):
     dish = models.Dish.get_by_id(id)
     print(dish)
