@@ -59,6 +59,23 @@ def get_one_order(id):
         status = 200,
     ), 200
 
+# add dish to order -> api/v1/orders/add_dish/<id>===========================================
+@orders.route('/add_dish/<id>', methods=['PUT'])
+# @login_required
+def add_dish_to_order(dish_id, order_id):
+    dish = models.Dish.get_by_id(dish_id)
+    order = models.Order.get_by_id(order_id)
+    print(dish, order)
+
+    order.add(dish)
+
+    return jsonify(
+        data = model_to_dict(order),
+        message = '🍛 You added a dish to your order! 🍛',
+        status = 200
+    ), 200
+
+
 # update route -> api/v1/orders/<order_id> ===========================================
 @orders.route('/<id>', methods=['PUT'])
 # @login_required

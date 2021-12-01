@@ -23,6 +23,15 @@ class User(UserMixin, Model):
         database = DATABASE
 
 # ===================================================
+class Order(Model):
+    created_at = DateTimeField(default = datetime.datetime.now)
+    total = FloatField()
+    customer = ForeignKeyField(User, backref='orders')
+
+    class Meta:
+        database = DATABASE
+ 
+# ===================================================
 class Dish(Model):
     title = CharField(unique = True)
     price = FloatField()
@@ -30,29 +39,12 @@ class Dish(Model):
     description = CharField(unique = True)
     category = CharField()
     labels = [CharField()]
+    orders = ManyToManyField(Order, backref='dishes')
 
     class Meta:
         database = DATABASE
 
-# ===================================================
-class Order(Model):
-    created_at = DateTimeField(default = datetime.datetime.now)
-    total = FloatField()
-    customer = ForeignKeyField(User, backref='orders')
-    # dishes = ForeignKeyField(Dish, backref='orders')
 
-    class Meta:
-        database = DATABASE
- 
-# ===================================================
-class DishOrder(Model):
-    dish = ForeignKeyField(Dish)
-    order = ForeignKeyField(Order)
-
-    class Meta:
-        database = DATABASE
-
-# ===================================================
 # ===================================================
 
 # initialize
