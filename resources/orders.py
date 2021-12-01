@@ -17,8 +17,8 @@ def orders_index():
 
     current_user_order_dicts = [model_to_dict(order) for order in current_user.orders]
 
-    for order_dict in current_user_order_dicts:
-        order_dict['customer'].pop('password')
+    # for order_dict in current_user_order_dicts:
+    #     order_dict['customer'].pop('password')
 
     print('=====================================')
     return jsonify({
@@ -35,10 +35,10 @@ def create_order():
     print('here is my payload:')
     print(payload)
     # print(current_user)
-    new_order = models.Order.create(created_at=payload['created_at'], total=payload['total'])
+    new_order = models.Order.create(total=payload['total'], customer=current_user.id)
     # print(dir(new_order))
     order_dict = model_to_dict(new_order)
-    order_dict['customer'].pop('password')
+    # order_dict['customer'].pop('password')
 
     return jsonify(
         data = order_dict,
