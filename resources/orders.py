@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 
 # blueprint
 orders = Blueprint('orders', 'order')
-
+OrderDish = Blueprint('OrderDish', 'OrderDish')
 # index order -> /api/v1/orders ======================================================
 @orders.route('/', methods=['GET'])
 def orders_index():
@@ -59,22 +59,26 @@ def get_one_order(id):
         status = 200,
     ), 200
 
-# add dish to order -> api/v1/orders/add_dish/<id>===========================================
-@orders.route('/add_dish/<id>', methods=['PUT'])
+# add dish to order -> api/v1/orders/add_dish/<dish_id>/<order_id>===========================================
+@orders.route('/add_dish/<dish_id>/<order_id>', methods=['PUT'])
 # @login_required
 def add_dish_to_order(dish_id, order_id):
-    dish = models.Dish.get_by_id(dish_id)
-    order = models.Order.get_by_id(order_id)
-    print(dish, order)
+    
+    current_dish = models.Dish.get_by_id(dish_id)
+    current_order = models.Order.get_by_id(order_id)
+    
 
-    order.add(dish)
+    print('here\'s the dish:', model_to_dict(current_dish))
+    print('here\'s the order:', model_to_dict(current_order))
+    
+    current_order.dishes.add(current_dish)
 
+    
     return jsonify(
-        data = model_to_dict(order),
+        data = model_to_dict(current_order),
         message = '🍛 You added a dish to your order! 🍛',
         status = 200
     ), 200
-
 
 # update route -> api/v1/orders/<order_id> ===========================================
 @orders.route('/<id>', methods=['PUT'])

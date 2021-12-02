@@ -3,6 +3,8 @@ from peewee import *
 import datetime
 from flask_login import UserMixin
 
+from resources.orders import OrderDish
+
 DATABASE = SqliteDatabase('neon-pyramid.sqlite')
 
 # models 
@@ -33,10 +35,10 @@ class Order(Model):
  
 # ===================================================
 class Dish(Model):
-    title = CharField(unique = True)
+    title = CharField()
     price = FloatField()
-    image = CharField(unique = True)
-    description = CharField(unique = True)
+    image = CharField()
+    description = CharField()
     category = CharField()
     labels = [CharField()]
     orders = ManyToManyField(Order, backref='dishes')
@@ -44,12 +46,12 @@ class Dish(Model):
     class Meta:
         database = DATABASE
 
-
+OrderDish = Dish.orders.get_through_model()
 # ===================================================
 
 # initialize
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Order, Dish], safe = True)
+    DATABASE.create_tables([User, Order, Dish, OrderDish], safe = True)
     print('🤖 Connect to the DB and created tables if they don\'t already exist 🤖')
     DATABASE.close()
