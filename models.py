@@ -1,8 +1,9 @@
 # imports
+from flask.json import jsonify
 from peewee import *
 import datetime
 from flask_login import UserMixin
-
+from playhouse.sqlite_ext import *
 from resources.orders import OrderDish
 
 DATABASE = SqliteDatabase('neon-pyramid.sqlite')
@@ -15,11 +16,7 @@ class User(UserMixin, Model):
     phone_num = CharField(unique = True)
     address = CharField(unique = True)
     password = CharField(unique = True)
-    payment_info = {
-        "cc_num": CharField(unique = True),
-        "cc_exp": CharField(),
-        "cc_sec_code": CharField()
-    }
+    payment_info = JSONField()
 
     class Meta:
         database = DATABASE
