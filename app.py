@@ -1,10 +1,10 @@
 # imports
 from flask import Flask, jsonify, g
-from flask_cors import CORS
 import models
 from resources.users import users
 from resources.orders import orders
 from resources.dishes import dishes
+from flask_cors import CORS
 from flask_login import LoginManager, login_manager
 import os
 from dotenv import load_dotenv
