@@ -34,6 +34,8 @@ def create_order():
     payload = request.get_json()
     print('here is my payload:')
     print(payload)
+    print(current_user)
+    print(current_user.id)
     # print(current_user)
     new_order = models.Order.create(total=payload['total'], customer=current_user.id)
     # print(dir(new_order))
