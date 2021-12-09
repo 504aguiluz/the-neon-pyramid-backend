@@ -1,4 +1,5 @@
 # imports
+from enum import unique
 from flask.json import jsonify
 from peewee import *
 import datetime
@@ -16,7 +17,9 @@ class User(UserMixin, Model):
     phone_num = CharField(unique = True)
     address = CharField(unique = True)
     password = CharField(unique = True)
-    payment_info = JSONField()
+    cc_num = CharField(),
+    cc_exp =  CharField(),
+    cc_sec_code = CharField(),
 
     class Meta:
         database = DATABASE

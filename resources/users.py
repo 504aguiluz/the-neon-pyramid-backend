@@ -27,7 +27,7 @@ def register():
     print(payload)
 
     try:
-        models.User.get(models.User.email == payload['email'])
+        models.User.get(models.User.username == payload['username'])
 
         return jsonify(
             data = {},
@@ -45,7 +45,9 @@ def register():
             phone_num = payload['phone_num'],
             address = payload['address'],
             password = pw_hash,
-            payment_info = payload['payment_info']
+            cc_num = '',
+            cc_exp = '',
+            cc_sec_code = '',
         )
 
         login_user(created_user)
@@ -66,10 +68,9 @@ def register():
 def login():
     payload = request.get_json()
     payload['username'] = payload['username'].lower()
-    payload['email'] = payload['email'].lower()
 
     try:
-        user = models.User.get(models.User.email == payload['email'])
+        user = models.User.get(models.User.username == payload['username'])
         user_dict = model_to_dict(user)
         password_is_good = check_password_hash(user_dict['password'], payload['password'])
 
