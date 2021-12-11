@@ -36,9 +36,7 @@ def create_order():
     print(payload)
     print(current_user)
     print(current_user.id)
-    # print(current_user)
     new_order = models.Order.create(total=payload['total'], customer=current_user.id)
-    # print(dir(new_order))
     order_dict = model_to_dict(new_order)
     # order_dict['customer'].pop('password')
 
@@ -68,16 +66,21 @@ def add_dish_to_order(dish_id, order_id):
     
     current_dish = models.Dish.get_by_id(dish_id)
     current_order = models.Order.get_by_id(order_id)
-    
 
     print('here\'s the dish:', model_to_dict(current_dish))
     print('here\'s the order:', model_to_dict(current_order))
     
     current_order.dishes.add(current_dish)
-    
+    print('current_order.dishes returned:')
+    print(current_order.dishes)
+    print('current_order:')
+    # print(model_to_dict(current_order.dishes))
+    dishes = [model_to_dict(dish) for dish in current_order.dishes]
+    print(dishes)
+    # print(dishes[0].title)
     
     return jsonify(
-        data = model_to_dict(current_order),
+        data = dishes,
         message = '🍛 You added a dish to your order! 🍛',
         status = 200
     ), 200

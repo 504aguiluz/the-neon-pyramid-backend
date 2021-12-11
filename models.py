@@ -40,7 +40,6 @@ class Dish(Model):
     image = CharField()
     description = CharField()
     category = CharField()
-    labels = [CharField()]
     orders = ManyToManyField(Order, backref='dishes')
 
     class Meta:
