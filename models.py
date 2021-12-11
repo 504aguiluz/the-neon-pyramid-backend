@@ -35,6 +35,7 @@ class Order(Model):
  
 # ===================================================
 class Dish(Model):
+    qtyOrdered = IntegerField()
     title = CharField()
     price = FloatField()
     image = CharField()

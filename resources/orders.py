@@ -70,15 +70,15 @@ def add_dish_to_order(dish_id, order_id):
     print('here\'s the dish:', model_to_dict(current_dish))
     print('here\'s the order:', model_to_dict(current_order))
     
-    current_order.dishes.add(current_dish)
-    print('current_order.dishes returned:')
-    print(current_order.dishes)
-    print('current_order:')
-    # print(model_to_dict(current_order.dishes))
+    try:
+        current_order.dishes.add(current_dish)
+    
+    except models.IntegrityError as err:
+        print('dish already present in order!')
+        print('Error: ' + err)
+        
     dishes = [model_to_dict(dish) for dish in current_order.dishes]
     print(dishes)
-    # print(dishes[0].title)
-    
     return jsonify(
         data = dishes,
         message = '🍛 You added a dish to your order! 🍛',
@@ -113,4 +113,36 @@ def delete_order(id):
             data = {},
             message = f'💣 Successfully deleted {num_of_rows_deleted} order with id {id} 💣',
         status = 200
+    ), 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@orders.route('/ordertest', methods=['GET'])
+# @login_required
+def order_test():
+    # order = models.Order.get_by_id(2)
+
+    order = models.OrderDish.select()
+    orders = [model_to_dict(order_dish) for order_dish in order]
+    print((orders))
+
+    return jsonify(
+        data = model_to_dict(order),
+        message = 'Success! Here\'s an order.',
+        status = 200,
     ), 200
