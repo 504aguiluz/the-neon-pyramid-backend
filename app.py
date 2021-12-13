@@ -4,6 +4,7 @@ import models
 from resources.users import users
 from resources.orders import orders
 from resources.dishes import dishes
+from resources.ordered_dishes import ordered_dishes
 from flask_cors import CORS
 from flask_login import LoginManager, login_manager
 import os
@@ -46,11 +47,13 @@ def unauthorized():
 CORS(orders, origins=['http://localhost:3000'], supports_credentials=True)
 CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
 CORS(dishes, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(ordered_dishes, origins=['http://localhost:3000'], supports_credentials=True)
 
 # blueprint config
 app.register_blueprint(orders, url_prefix='/api/v1/orders')
 app.register_blueprint(users, url_prefix='/api/v1/users')
 app.register_blueprint(dishes, url_prefix='/api/v1/dishes')
+app.register_blueprint(ordered_dishes, url_prefix='/api/v1/ordered_dishes')
 
 # app routes
 @app.before_request

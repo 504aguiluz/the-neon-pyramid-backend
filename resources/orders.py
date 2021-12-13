@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 
 # blueprint
 orders = Blueprint('orders', 'order')
-OrderDish = Blueprint('OrderDish', 'OrderDish')
+# OrderDish = Blueprint('OrderDish', 'OrderDish')
 # index order -> /api/v1/orders ======================================================
 @orders.route('/', methods=['GET'])
 def orders_index():

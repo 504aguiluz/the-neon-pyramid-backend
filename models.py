@@ -5,7 +5,7 @@ from peewee import *
 import datetime
 from flask_login import UserMixin
 from playhouse.sqlite_ext import *
-from resources.orders import OrderDish
+# from resources.orders import OrderDish
 
 DATABASE = SqliteDatabase('neon-pyramid.sqlite')
 
@@ -35,7 +35,6 @@ class Order(Model):
  
 # ===================================================
 class Dish(Model):
-    qtyOrdered = IntegerField()
     title = CharField()
     price = FloatField()
     image = CharField()
@@ -46,12 +45,23 @@ class Dish(Model):
     class Meta:
         database = DATABASE
 
-OrderDish = Dish.orders.get_through_model()
+# OrderDish = Dish.orders.get_through_model()
 # ===================================================
 
+class OrderedDish(Model):
+
+    qtyOrdered = IntegerField()
+    customer = ForeignKeyField(User, backref='ordered_dishes')
+    order = ForeignKeyField(Order, backref='ordered_dishes')
+    dish = ForeignKeyField(Dish, backref='ordered_dishes')
+
+    class Meta:
+        database = DATABASE
+
+# ===================================================
 # initialize
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Order, Dish, OrderDish], safe = True)
+    DATABASE.create_tables([User, Order, Dish, OrderedDish], safe = True)
     print('🤖 Connect to the DB and created tables if they don\'t already exist 🤖')
     DATABASE.close()
