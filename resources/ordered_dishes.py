@@ -68,26 +68,6 @@ def create_ordered_dish(order_id, dish_id):
     print('here\'s the order to:', model_to_dict(current_order))
     print('here\'s the dish:', model_to_dict(current_dish))
 
-    # queries what dishes an order has:
-    # dishes = (models.Dish
-    #         .select()
-    #         .join(models.OrderedDish)
-    #         .join(models.Order)
-    #         .where(models.Order.id == current_order.id))
-    
-    # # queries ordered_dish containing current_order_id:
-    # ordered_dishes = (models.OrderedDish
-    #                     .select(models.OrderedDish, models.Dish, models.Order)
-    #                     .join(models.Dish)
-    #                     .switch(models.OrderedDish)
-    #                     .join(models.Order)
-    #                     .where(models.Order.id == current_order.id))
-
-    # # make list of dicts
-    # dishes_dict = [model_to_dict(dish) for dish in dishes]
-    # ordered_dishes_dict = [model_to_dict(ordered_dish) for ordered_dish in ordered_dishes]
-
-
     new_ordered_dish = models.OrderedDish.create(qtyOrdered = 1, order=current_order, dish=current_dish, customer=current_user)
 
     print(f'{new_ordered_dish.dish.title} added to order {current_order}')
