@@ -124,6 +124,14 @@ def update_duplicate_ordered_dish(order_id, dish_id, ordered_dish_id):
 
     for od in ordered_dishes:
         target = model_to_dict(od)
+        # total order.total and all orderedDish.order.totals
+        print(f'order total: {current_order.total}')
+        current_order.total += current_ordered_dish_dict['dish']['price']
+        print(f'new order total: {current_order.total}')
+        print(f'ordererd_dish total: {od.order.total}')
+        od.order.total += current_ordered_dish_dict['dish']['price']
+        print(f'new ordererd_dish total: {od.order.total}')
+        print()
         if target['dish']['id'] == current_dish.id:
             print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
             print('target dish id:')
@@ -140,6 +148,7 @@ def update_duplicate_ordered_dish(order_id, dish_id, ordered_dish_id):
             current_ordered_dish_dict['dish']['price'] *= 2
             print('new current OD price:')
             print(current_ordered_dish_dict['dish']['price'])
+
             # delete target
             delete_query = models.OrderedDish.delete().where(models.OrderedDish.id == target['id'])
             num_of_rows_deleted = delete_query.execute()
