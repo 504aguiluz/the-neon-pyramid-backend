@@ -25,6 +25,37 @@ def ordered_dishes_index():
         'status': 200
     }), 200
 
+# show ordered_dishes by <order_id>
+# -> /api/v1/ordered_dishes/<order_id>/
+@ordered_dishes.route('/<order_id>/', 
+methods=['GET'])
+# @login_required
+def show_ordered_dishes_by_order_id(order_id):
+
+    current_order = models.Order.get_by_id(order_id)
+    # current_dish = models.Dish.get_by_id(dish_id)
+    
+    print('here\'s the order to:', model_to_dict(current_order))
+    
+    # queries ordered_dish containing current_order_id:
+    ordered_dishes = (models.OrderedDish
+                        .select(models.OrderedDish, models.Dish, models.Order)
+                        .join(models.Dish)
+                        .switch(models.OrderedDish)
+                        .join(models.Order)
+                        .where(models.Order.id == current_order.id))
+
+    ordered_dishes_to_dict = [model_to_dict(ordered_dishes_by_order) for ordered_dishes_by_order in ordered_dishes]
+
+    for od in ordered_dishes_to_dict:
+        print('ordered_dish.order.id: ')
+        print(od['order']['id'])
+
+    return jsonify({
+        'data': ordered_dishes_to_dict,
+        'message': f'🧾 successfully found {len(ordered_dishes_to_dict)} ordered_dishes with order id: {current_order}! 🧾',
+        'status': 200
+    }), 200
 
 # create ordered_dish -> /api/v1/ordered_dishes/<order_id>/<dish_id>/ =====================================================
 @ordered_dishes.route('/<order_id>/<dish_id>/', methods=['POST'])
