@@ -9,17 +9,14 @@ ordered_dishes = Blueprint('ordered_dishes', 'ordered_dishes')
 # index ordered_dishes -> /api/v1/ordered_dishes ======================================================
 @ordered_dishes.route('/', methods = ['GET'])
 def ordered_dishes_index():
-    result = models.OrderedDish.select()
-    print('')
-    print('======== result of order select query ========')
-    print(result)
-
 
     current_user_ordered_dish_dicts = [model_to_dict(ordered_dish) for ordered_dish in current_user.ordered_dishes]
 
 
-    # for order_dict in current_user_ordered_dish_dicts:
-    #     ordered_dishes_dict['order.customer'].pop('password')
+    for order_dict in current_user_ordered_dish_dicts:
+        order_dict['customer'].pop('password')
+        order_dict['order']['customer'].pop('password')
+        print(order_dict)
 
     print('=====================================')
     return jsonify({
@@ -41,70 +38,42 @@ def create_ordered_dish(order_id, dish_id):
     print('here\'s the dish:', model_to_dict(current_dish))
 
     # queries what dishes an order has:
-    dishes = (models.Dish
-            .select()
-            .join(models.OrderedDish)
-            .join(models.Order)
-            .where(models.Order.id == current_order.id))
+    # dishes = (models.Dish
+    #         .select()
+    #         .join(models.OrderedDish)
+    #         .join(models.Order)
+    #         .where(models.Order.id == current_order.id))
     
-    # queries ordered_dish containing current_order_id:
-    ordered_dishes = (models.OrderedDish
-                        .select(models.OrderedDish, models.Dish, models.Order)
-                        .join(models.Dish)
-                        .switch(models.OrderedDish)
-                        .join(models.Order)
-                        .where(models.Order.id == current_order.id))
+    # # queries ordered_dish containing current_order_id:
+    # ordered_dishes = (models.OrderedDish
+    #                     .select(models.OrderedDish, models.Dish, models.Order)
+    #                     .join(models.Dish)
+    #                     .switch(models.OrderedDish)
+    #                     .join(models.Order)
+    #                     .where(models.Order.id == current_order.id))
 
-    # make list of dicts
-    dishes_dict = [model_to_dict(dish) for dish in dishes]
-    ordered_dishes_dict = [model_to_dict(ordered_dish) for ordered_dish in ordered_dishes]
+    # # make list of dicts
+    # dishes_dict = [model_to_dict(dish) for dish in dishes]
+    # ordered_dishes_dict = [model_to_dict(ordered_dish) for ordered_dish in ordered_dishes]
 
-    # loop through list of dishes to find duplicates
 
-    for ordered_dish in ordered_dishes:
-        print(ordered_dish.dish)
-    
-    if ordered_dish.dish.id == current_dish.id:
-        new_ordered_dish = models.OrderedDish.create(qtyOrdered = 1, order=current_order, dish=current_dish, customer=current_user)
-        print(f'{new_ordered_dish.dish.title} added to order!')
-        new_ordered_dish_dict = model_to_dict(new_ordered_dish)
+    new_ordered_dish = models.OrderedDish.create(qtyOrdered = 1, order=current_order, dish=current_dish, customer=current_user)
 
-        print(f'this dish was ordered to order {current_order}: {new_ordered_dish_dict}')
+    print(f'{new_ordered_dish.dish.title} added to order {current_order}')
+    new_ordered_dish_dict = model_to_dict(new_ordered_dish)
 
-        return jsonify (
-            data = new_ordered_dish_dict,
-            message = 'Successfully ordered a dish!',
-            status = 200,
-        ), 200
 
-    # if ordered_dish.dish.id == current_dish.id:
-    #     print(f'duplicate found! dish.id: {ordered_dish.dish.id}; current_dish.id: {current_dish.id}')
-    #     print(f'duplicate dish: {ordered_dish.dish.title}')
-    #     print(f'duplicate dish qty: {ordered_dish.qtyOrdered}')
-    #     ordered_dish.qtyOrdered += 1
-    #     print(f'new dish qty: {ordered_dish.qtyOrdered}')
-    #     return 'if'
-    
-    # else:
-    #     new_ordered_dish = models.OrderedDish.create(qtyOrdered = 1, order=current_order, dish=current_dish, customer=current_user)
-    #     print(f'{new_ordered_dish.dish.title} added to order!')
-    #     new_ordered_dish_dict = model_to_dict(new_ordered_dish)
+    new_ordered_dish_dict['customer'].pop('password')
+    new_ordered_dish_dict['order']['customer'].pop('password')
+    print(new_ordered_dish_dict)
 
-    #     print(f'this dish was ordered to order {current_order}: {new_ordered_dish_dict}')
 
-    #     return jsonify (
-    #         data = new_ordered_dish_dict,
-    #         message = 'Successfully ordered a dish!',
-    #         status = 200,
-    #     ), 200
-    # if (dish is not in ordered_dishes):
-        # create dish
-    # else:
-        # increment qtyOrdered by 1
+    return jsonify (
+        data = new_ordered_dish_dict,
+        message = 'Successfully ordered a dish!',
+        status = 200,
+    ), 200
 
-    # sum of dish totals = ordered_dish.order.total
-
-    return 'blank return'
 
 # delete ordered_dish -> /api/v1/ordered_dishes/<order_id>/<dish_id>/ =====================================================
 @ordered_dishes.route('/<ordered_dish_id>/', methods=['DELETE'])
@@ -113,28 +82,16 @@ def delete_ordered_dish(ordered_dish_id):
     
     current_ordered_dish = models.OrderedDish.get_by_id(ordered_dish_id)
 
-    current_ordered_dish_dict = model_to_dict(current_ordered_dish)
-
     delete_query = models.OrderedDish.delete().where(models.OrderedDish.id == ordered_dish_id)
     
- 
+    print(f'{current_ordered_dish.dish.title} deleted from ordered dish with id: {ordered_dish_id}')
+    
+    num_of_rows_deleted = delete_query.execute()
+    print(f'num of rows deleted: {num_of_rows_deleted}')
 
-    if (current_ordered_dish.qtyOrdered == 1):
-        num_of_rows_deleted = delete_query.execute()
-        print(f'num of rows deleted: {num_of_rows_deleted}')
-        return jsonify(
-            data = {},
-            message =f'💣 Successfully deleted {num_of_rows_deleted} ordered dish with id {ordered_dish_id} 💣',
-        status = 200
+    return jsonify(
+        data = {},
+        message =f'💣 Successfully deleted {current_ordered_dish.dish.title} from ordered dish with id {ordered_dish_id} 💣',
+    status = 200
     ), 200
-    else:
-        print('ordered dish qty decremented by 1')
-        current_ordered_dish.qtyOrdered -= 1
-        print(f'here is the qtyOrdered:{current_ordered_dish.qtyOrdered}')
-        return jsonify(
-            data ={current_ordered_dish_dict},
-            message = f'ordered dish qty is now {current_ordered_dish.qtyOrdered}',
-            status = 200
-        ), 200
-
-    # sum of dish totals = ordered_dish.order.total
+    
