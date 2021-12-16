@@ -1,5 +1,5 @@
 # imports
-from flask import Flask, jsonify, g
+from flask import Flask, jsonify, g, after_this_request
 import models
 from resources.users import users
 from resources.orders import orders
@@ -19,9 +19,10 @@ PORT = 8000
 # intializing an instance of Flask class
 app = Flask(__name__)
 
-# LoginManager config
+# LoginManager/cookies config
 app.secret_key = os.environ.get("FLASK_APP_SECRET")
-# print(os.environ.get("FLASK_APP_SECRET"))
+app.config['SESSION_COOKIE_SAMESITE'] = "None"
+app.config['SESSION_COOKIE_SECURE'] = True
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -31,6 +32,7 @@ def load_user(user_id):
         print('loading the following user')
         return models.User.get_by_id(user_id)
     except models.DoesNotExist:
+        print('problem loading the following user...')
         return None
 
 @login_manager.unauthorized_handler
@@ -56,18 +58,32 @@ app.register_blueprint(dishes, url_prefix='/api/v1/dishes')
 app.register_blueprint(ordered_dishes, url_prefix='/api/v1/ordered_dishes')
 
 # app routes
-@app.before_request
+# @app.before_request
+# def before_request():
+#     """Connect to the database before each request."""
+#     g.db = models.DATABASE
+#     g.db.connect()
+
+
+# @app.after_request
+# def after_request(response):
+#     """Close the database connection after each request."""
+#     g.db.close()
+#     return response
+
+@app.before_request 
 def before_request():
-    """Connect to the database before each request."""
-    g.db = models.DATABASE
-    g.db.connect()
 
+    """Connect to the db before each request"""
+    print("this before each request") 
+    models.DATABASE.connect()
 
-@app.after_request
+@after_this_request 
 def after_request(response):
-    """Close the database connection after each request."""
-    g.db.close()
-    return response
+    """Close the db connetion after each request"""
+    print("this after each request") 
+    models.DATABASE.close()
+    return response 
 
 @app.route('/test')
 def index():
@@ -76,6 +92,11 @@ def index():
 @app.route('/test/json')
 def neon():
     return jsonify(name="the neon pyramid", date_opened = 2749)
+
+# initialize tables for heroku
+if os.environ.get('FLASK_ENV') != 'development':
+  print('\non heroku!')
+  models.initialize()
 
 # run app
 if __name__ == '__main__':

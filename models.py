@@ -1,13 +1,14 @@
 # imports
+import os
+from playhouse.db_url import connect
 from enum import unique
 from flask.json import jsonify
 from peewee import *
 import datetime
 from flask_login import UserMixin
 from playhouse.sqlite_ext import *
-# from resources.orders import OrderDish
 
-DATABASE = SqliteDatabase('neon-pyramid.sqlite')
+DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///neon-pyramid.sqlite')
 
 # models 
 # ===================================================
@@ -45,7 +46,6 @@ class Dish(Model):
     class Meta:
         database = DATABASE
 
-# OrderDish = Dish.orders.get_through_model()
 # ===================================================
 
 class OrderedDish(Model):
