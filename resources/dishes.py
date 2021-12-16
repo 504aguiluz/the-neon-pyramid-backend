@@ -441,12 +441,12 @@ def seed_dishes():
 
     for payload in payload_list:
         dish = models.Dish.create(**payload)
-        dish_list.append(dish)
+        dish_list.append(model_to_dict(dish))
+    
+    print(payload_list)
 
-
-    seeded_dishes = model_to_dict(dish_list)
     return jsonify(
-        data = seeded_dishes,
+        data = dish_list,
         status = {
             "code": 201,
             "message": "🍛 Successfully seeded menu! 🥘"

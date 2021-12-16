@@ -57,20 +57,6 @@ app.register_blueprint(users, url_prefix='/api/v1/users')
 app.register_blueprint(dishes, url_prefix='/api/v1/dishes')
 app.register_blueprint(ordered_dishes, url_prefix='/api/v1/ordered_dishes')
 
-# app routes
-# @app.before_request
-# def before_request():
-#     """Connect to the database before each request."""
-#     g.db = models.DATABASE
-#     g.db.connect()
-
-
-# @app.after_request
-# def after_request(response):
-#     """Close the database connection after each request."""
-#     g.db.close()
-#     return response
-
 @app.before_request 
 def before_request():
 

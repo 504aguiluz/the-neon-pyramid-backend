@@ -41,7 +41,7 @@ class Dish(Model):
     image = CharField()
     description = CharField()
     category = CharField()
-    orders = ManyToManyField(Order, backref='dishes')
+    orders = ForeignKeyField(Order, backref='dishes', null=True, default=None)
 
     class Meta:
         database = DATABASE
