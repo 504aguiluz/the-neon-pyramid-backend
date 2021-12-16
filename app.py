@@ -46,10 +46,10 @@ def unauthorized():
     ), 401
 
 # CORS config
-CORS(orders, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(dishes, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(ordered_dishes, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(orders, origins=['http://localhost:3000', 'https://neon-pyramid-react-deployment.herokuapp.com'], supports_credentials=True)
+CORS(users, origins=['http://localhost:3000', 'https://neon-pyramid-react-deployment.herokuapp.com'], supports_credentials=True)
+CORS(dishes, origins=['http://localhost:3000', 'https://neon-pyramid-react-deployment.herokuapp.com'], supports_credentials=True)
+CORS(ordered_dishes, origins=['http://localhost:3000', 'https://neon-pyramid-react-deployment.herokuapp.com'], supports_credentials=True)
 
 # blueprint config
 app.register_blueprint(orders, url_prefix='/api/v1/orders')
