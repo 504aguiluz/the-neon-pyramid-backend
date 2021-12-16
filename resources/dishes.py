@@ -102,7 +102,7 @@ def seed_dishes():
     {
     # "qtyOrdered": 0,
     "category": "app",
-    "description": "10 multi-course meal bites, all individually blended classic flavor patents: chicken parmesan, mac-n-cheese casserole, cilantro-labneh, pork-jigae, black-truffled roast pork, octopus stifado, grilled hitaki, chipotle sesame shrimp, horse borsch, tabbouleh cremé",
+    "description": "10 multi-course meal bites, all bespoke flavor patents: chicken parmesan, mac-n-cheese casserole, cilantro-labneh, pork-jigae, black-truffled roast pork, octopus stifado, grilled hitaki, chipotle sesame shrimp, horse borsch, tabbouleh cremé",
     "image": "https://i.imgur.com/W6n28qzt.jpg",
     "price": 55.75,
     "title": "nitro meal spheres", 
