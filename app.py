@@ -78,12 +78,12 @@ def before_request():
     print("this before each request") 
     models.DATABASE.connect()
 
-@after_this_request 
-def after_request(response):
-    """Close the db connetion after each request"""
-    print("this after each request") 
-    models.DATABASE.close()
-    return response 
+    @after_this_request 
+    def after_request(response):
+        """Close the db connetion after each request"""
+        print("this after each request") 
+        models.DATABASE.close()
+        return response 
 
 @app.route('/test')
 def index():
