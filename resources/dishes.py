@@ -60,7 +60,7 @@ def seed_dishes():
     payload_list = [
         # =============8 APPS =================
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "app",
     "description": "six nutrient-fortified dumplings: flavors based on the cuisine of each sector in Neo-saka.",
     "image": "https://i.imgur.com/wLIpX96t.png",
@@ -70,7 +70,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "app",
     "description": "printed pizza bites with faux-mozzarella, basil, marinara concentrate, locally-grown micro-prosciutto",
     "image": "https://i.imgur.com/06TfTimt.jpg",
@@ -80,7 +80,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,  
+    # "qtyOrdered": 0,  
     "category": "app",
     "description": "artisinally spliced fungi-pierogis with bespoke umami flavoring and exclusively patented mushroom blends",
     "image": "https://i.imgur.com/H49qi2Vt.jpg",
@@ -90,17 +90,17 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "app",
     "description": "locally raised micro-koi atop a bed of protein-rice",
     "image": "https://i.imgur.com/u7gDLK1t.jpg",
     "price": 28.50,
     "title": "micro-koi nigiri", 
-    "labels": ["pescatarian", "local"]
+    # "labels": ["pescatarian", "local"]
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "app",
     "description": "10 multi-course meal bites, all individually blended classic flavor patents: chicken parmesan, mac-n-cheese casserole, cilantro-labneh, pork-jigae, black-truffled roast pork, octopus stifado, grilled hitaki, chipotle sesame shrimp, horse borsch, tabbouleh cremé",
     "image": "https://i.imgur.com/W6n28qzt.jpg",
@@ -110,7 +110,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "app",
     "description": "freshly pilled salad ingredients. mix and match!",
     "image": "https://i.imgur.com/u8Vtyayt.jpg",
@@ -120,7 +120,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "app",
     "description": "perfectly balanced tomato basil soup dodecohedrons",
     "image": "https://i.imgur.com/7wGpLnwt.jpg?2",
@@ -130,7 +130,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "app",
     "description": "neo-mediterranean salad sprout tarts",
     "image": "https://i.imgur.com/xKOpIuKt.jpg",
@@ -142,7 +142,7 @@ def seed_dishes():
     # =============8 BEVS =================
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "partially aerosolized cotton candy vodka tonic",
     "image": "https://i.imgur.com/tmE0C7Mt.png",
@@ -152,7 +152,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "old-world cuban rum and reconstituted micro-fruit blend with simply syrup",
     "image": "https://i.imgur.com/c2xc7XBt.jpg",
@@ -162,7 +162,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "wide variety of beer flavored malt liquors",
     "image": "https://i.imgur.com/UDtgOl1t.jpg",
@@ -172,7 +172,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "luma take on an old classic gin and tonic",
     "image": "https://i.imgur.com/HwTB6but.jpg",
@@ -182,7 +182,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "a neosaka classic: espresso, matcha and chipotle oil",
     "image": "https://i.imgur.com/ngzpE6Ft.jpg",
@@ -192,7 +192,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "gelatinized portable coffee",
     "image": "https://i.imgur.com/qEPbJsut.png",
@@ -202,7 +202,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "rum, tequila, dinoflagellate-infused mescalina, simple syrup, aromatics",
     "image": "https://i.imgur.com/8YrFz9Ht.jpg",
@@ -212,7 +212,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "bev",
     "description": "500ml gelatinized water modules",
     "image": "https://i.imgur.com/k7el2fPt.jpg",
@@ -224,7 +224,7 @@ def seed_dishes():
     # =============7 DESSERTS=================
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "dessert",
     "description": "printed candied marzipan skulls. flavors include: chocolate walnut, bubblegum, fresh fruit",
     "image": "https://i.imgur.com/iTnXAgrt.jpg",
@@ -234,7 +234,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "dessert",
     "description": "3D printed mini chocolate apple pies",
     "image": "https://i.imgur.com/cyju2GPt.png",
@@ -244,7 +244,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "dessert",
     "description": "layered dinoflagellate-infused glazed focaccia",
     "image": "https://i.imgur.com/JCrUXO6t.png",
@@ -254,7 +254,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "dessert",
     "description": "glazed donuts with dinoflagellate-infused icing. three to an order",
     "image": "https://i.imgur.com/XaCFREmt.jpg",
@@ -264,7 +264,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "dessert",
     "description": "stack of 5 micro algae pancakes topped with syrup, whipped cream and freshly printed fruit",
     "image": "https://i.imgur.com/d6OdU5zt.jpg",
@@ -274,7 +274,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "dessert",
     "description": "combined dna from fish roe for structure and raspberries for flavor, we’ve created this unique dessert experience",
     "image": "https://i.imgur.com/VnONfF2t.jpg",
@@ -284,7 +284,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "dessert",
     "description": "another unique experience: live pomegranate injected white chocolate torte",
     "image": "https://i.imgur.com/ez2XJ57t.jpg",
@@ -296,7 +296,7 @@ def seed_dishes():
     # =============16 ENTREES=================
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "citrus braised cicada salad with badlands sea-salt and post-peruvian pepper",
     "image": "https://i.imgur.com/ENkSPndt.jpg",
@@ -306,7 +306,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "cajun-boiled recombined crawlobster with braised spinach",
     "image": "https://i.imgur.com/Rq1jG0Ut.jpg",
@@ -316,7 +316,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "a neosaka classic: cricket okonomiyaki",
     "image": "https://i.imgur.com/wu0JRoMt.jpg",
@@ -326,7 +326,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "wild trychopeplus fortified with vitamin bundle and neurotropic enhancements. serves 2",
     "image": "https://i.imgur.com/J4WGuC0t.jpg",
@@ -336,7 +336,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "reconstituted turkey dinner, perfectly indocharged to temperature. *please specify if desired temp is other than medium.",
     "image":  "https://i.imgur.com/zjsFRM2t.jpg",
@@ -346,7 +346,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "roasted squid filled dinoflagellate-infused crepes with algae sauce",
     "image": "https://i.imgur.com/XwM3ttht.jpg",
@@ -356,7 +356,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "dinoflagellate-infused sushi box: maguro, salmon, ebi",
     "image": "https://i.imgur.com/bPHIOSOt.jpg",
@@ -366,7 +366,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "tamago pho with bok chow, carrot and mushroom rings. served with a side of berry nitro custard",
     "image": "https://i.imgur.com/Oe1SkiDt.png",
@@ -376,7 +376,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "deconstructed dinoflagellate tamago ramen",
     "image": "https://i.imgur.com/Oe1SkiDt.png",
@@ -386,7 +386,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "dinoflagellate tonkotsu ramen",
     "image": "https://i.imgur.com/Qok48qOt.jpg",
@@ -396,7 +396,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "spinach pasta topped with mushrooms in a micro algae pesto",
     "image": "https://i.imgur.com/vJs4SfQt.jpg",
@@ -406,7 +406,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "cryo-fried jellyfish replica, with a side of badlands-grown hydrugula. served with curried maize relish.",
     "id": 1,
@@ -417,7 +417,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "classic dish for sneaker heads. served with freshly printed pickles, onions, tomato, ketchup, mustard, mayo",
     "image": "https://i.imgur.com/uvYlmzrt.jpg",
@@ -427,7 +427,7 @@ def seed_dishes():
     },
 
     {
-    "qtyOrdered": 0,
+    # "qtyOrdered": 0,
     "category": "entree",
     "description": "live vivarium sliders, with bespoke mushroom patents",
     "image": "https://i.imgur.com/qqEfcFzt.jpg",
